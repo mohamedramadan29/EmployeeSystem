@@ -1,0 +1,184 @@
+:root {
+    --primary: #4361ee;
+    --secondary: #3f37c9;
+    --success: #4cc9f0;
+    --light: #f8f9fa;
+    --dark: #212529;
+}
+
+body {
+    background-color: #f5f7fb;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-logo i {
+    font-size: 3rem;
+    color: var(--primary);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.task-status {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.status-pending {
+    background-color: #ffecb3;
+    color: #f57f17;
+}
+
+.status-in-progress {
+    background-color: #bbdefb;
+    color: #0d47a1;
+}
+
+.status-completed {
+    background-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+.status-cancelled {
+    background-color: #ffcdd2;
+    color: #c62828;
+}
+
+.timer {
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.timer-warning {
+    background-color: #ffecb3;
+    color: #f57f17;
+}
+
+.timer-danger {
+    background-color: #ffcdd2;
+    color: #c62828;
+}
+
+.timer-success {
+    background-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+.note-bubble {
+    background-color: #e3f2fd;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.note-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #e3f2fd transparent;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+
+.avatar-lg {
+    width: 100px;
+    height: 100px;
+    font-size: 2.5rem;
+}
+
+.dashboard-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: none;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background-color: white;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+    padding: 15px 20px;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 20px;
+}
+
+.stat-card .number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.stat-card .label {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.table th {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+.chart-container {
+    height: 250px;
+    position: relative;
+}
+
+.progress-container {
+    margin-top: 10px;
+}
+
+.progress-bar {
+    transition: width 0.5s ease-in-out;
+}
