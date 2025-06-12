@@ -32,10 +32,7 @@
                         <label class="form-label">الوظيفة</label>
                         <input type="text" name="job_type" class="form-control" id="employee-position" required="">
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">الراتب الأساسي (ريال)</label>
-                        <input type="number" name="sallary" class="form-control" id="employee-salary" required="">
-                    </div>
+             
                     <div class="col-md-6 mb-3">
                         <label class="form-label">تاريخ التوظيف</label>
                         <input type="date" name="start_job_date" class="form-control" id="employee-hire-date" required="">

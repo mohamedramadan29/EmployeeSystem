@@ -32,7 +32,6 @@ class EmployeeController extends Controller
                 'password_confirmation' => 'required|same:password',
                 'job_type' => 'required',
                 'start_job_date' => 'required',
-                'sallary' => 'required',
 
             ];
             $messages = [
@@ -46,7 +45,6 @@ class EmployeeController extends Controller
                 'password.min' => 'كلمة المرور يجب ان تكون على الاقل 6 حروف',
                 'job_type.required' => 'الوظيفة مطلوبة',
                 'start_job_date.required' => 'تاريخ البدء مطلوب',
-                'sallary.required' => 'الراتب مطلوب',
             ];
             $validator = Validator::make($data, $rules, $messages);
             if ($validator->fails()) {
@@ -59,7 +57,6 @@ class EmployeeController extends Controller
             $employee->password = Hash::make($data['password']);
             $employee->job_type = $data['job_type'];
             $employee->start_job_date = $data['start_job_date'];
-            $employee->sallary = $data['sallary'];
             $employee->account_type = $data['account_type'];
             $employee->save();
 
@@ -84,7 +81,6 @@ class EmployeeController extends Controller
                 'password_confirmation' => 'nullable|same:password',
                 'job_type' => 'required',
                 'start_job_date' => 'required',
-                'sallary' => 'required',
             ];
             $messages = [
                 'name.required' => 'الاسم مطلوب',
@@ -96,7 +92,6 @@ class EmployeeController extends Controller
                 'password.min' => 'كلمة المرور يجب ان تكون على الاقل 6 حروف',
                 'job_type.required' => 'الوظيفة مطلوبة',
                 'start_job_date.required' => 'تاريخ البدء مطلوب',
-                'sallary.required' => 'الراتب مطلوب',
             ];
             $validator = Validator::make($data, $rules, $messages);
             if ($validator->fails()) {
@@ -109,7 +104,6 @@ class EmployeeController extends Controller
                 "account_type" => $data['account_type'],
                 "job_type" => $data['job_type'],
                 "start_job_date" => $data['start_job_date'],
-                "sallary" => $data['sallary'],
             ]);
             return $this->success_message(' تم تعديل الموظف بنجاح');
         }
@@ -123,5 +117,11 @@ class EmployeeController extends Controller
         }
         $employee->delete();
         return $this->success_message(' تم حذف الموظف بنجاح');
+    }
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $employees = Admin::where('account_type', 'employee')->where('name', 'like', "%$search%")->get();
+        return view('dashboard.employees.index', compact('employees'));
     }
 }

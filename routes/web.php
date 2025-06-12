@@ -66,6 +66,8 @@ Route::group(['prefix' => 'dashboard'], function () {
                 Route::match(['post', 'get'], 'employee-task/store', 'store');
                 Route::get('employee-task/print/{id}', 'print');
                 Route::get('employee-tasks/archive', 'archive');
+
+
             });
 
             Route::controller(EmployeeController::class)->group(function () {
@@ -73,6 +75,7 @@ Route::group(['prefix' => 'dashboard'], function () {
                 Route::match(['post', 'get'], 'employee/store', 'store')->name('employee.store');
                 Route::match(['post', 'get'], 'employee/update/{id}', 'update')->name('employee.update');
                 Route::get('employee/delete/{id}', 'delete')->name('employee.delete');
+                Route::get('employees/search', 'search')->name('employee.search');
             });
             Route::controller(CalcProfitController::class)->group(function () {
                 Route::get('calc-profit', 'index')->name('calc-profit');

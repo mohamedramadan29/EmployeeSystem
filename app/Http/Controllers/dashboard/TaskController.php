@@ -21,7 +21,8 @@ class TaskController extends Controller
         }else{
             $tasks = Task::orderBy('id', 'desc')->get();
         }
-        return view('dashboard.tasks.index', compact('tasks'));
+        $employees = Admin::where('account_type', 'employee')->get();
+        return view('dashboard.tasks.index', compact('tasks', 'employees'));
     }
     public function store(Request $request){
         if($request->isMethod('post')){

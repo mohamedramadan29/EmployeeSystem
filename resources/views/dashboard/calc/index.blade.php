@@ -22,7 +22,6 @@
                                 <tr>
                                     <th>اسم الموظف</th>
                                     <th>الوظيفة</th>
-                                    <th>الراتب الأساسي</th>
                                     <th>عمولات إضافية</th>
                                     <th>إجمالي المستحقات</th>
                                 </tr>
@@ -32,7 +31,6 @@
                                     <tr>
                                         <td>{{ $employe->name }}</td>
                                         <td>{{ $employe->job_type }}</td>
-                                        <td>{{ number_format($employe->sallary, 2) }} ريال</td>
                                         <td>0 ريال</td>
                                         <td>{{ number_format($employe->sallary, 2) }} ريال</td>
                                     </tr>
