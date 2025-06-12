@@ -10,14 +10,13 @@ use App\Http\Controllers\dashboard\CalcProfitController;
 use App\Http\Controllers\dashboard\EmployeeTaskController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.login');
 });
 
 Route::group(['prefix' => 'dashboard'], function () {
     // Admin Login
 
     Route::controller(AdminController::class)->group(function () {
-        Route::match(['post', 'get'], '/', 'login')->name('admin_login');
         Route::match(['post', 'get'], 'login', 'login')->name('admin_login');
         // Admin Dashboard
         Route::group(['middleware' => 'admin'], function () {

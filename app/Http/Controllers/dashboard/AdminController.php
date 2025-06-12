@@ -44,34 +44,36 @@ class AdminController extends Controller
      public function login(Request $request)
      {
          if ($request->isMethod('post')) {
-             //            $data = $request->all();
-             $rules = [
-                 'email' => 'required|email',
-                 'password' => 'required',
-             ];
-             $customMessage = [
-                 'email.required' => 'من فضلك ادخل البريد الإلكتروني',
-                 'email.email' => 'من فضلك ادخل بريد الكتوني صحيح',
-                 'password.required' => 'من فضلك ادخل كلمة المرور',
-             ];
-             $validator = Validator::make($request->all(), $rules, $customMessage);
-             if ($validator->fails()) {
-                 return redirect()->back()->withErrors($validator)->withInput();
-             }
-             $email = $request->email;
-             $password = $request->password;
+            try{
+                $rules = [
+                    'email' => 'required|email',
+                    'password' => 'required',
+                ];
+                $customMessage = [
+                    'email.required' => 'من فضلك ادخل البريد الإلكتروني',
+                    'email.email' => 'من فضلك ادخل بريد الكتوني صحيح',
+                    'password.required' => 'من فضلك ادخل كلمة المرور',
+                ];
+                $validator = Validator::make($request->all(), $rules, $customMessage);
+                if ($validator->fails()) {
+                    return redirect()->back()->withErrors($validator)->withInput();
+                }
+                $email = $request->email;
+                $password = $request->password;
+                if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password])) {
+                    if (Auth::guard('admin')->user()->account_type == 'employee' && Auth::guard('admin')->user()->status == '0') {
+                    return $this->Error_message(' من فضلك انتظر التفعيل من الادارة   ');
+                    } else {
+                        return redirect()->route('welcome');
+                    }
+                } else {
+                    //$this->Error_message(' لا يوجد حساب بهذه البيانات  ');
+                    return Redirect::back()->withInput()->withErrors('لا يوجد حساب بهذه البيانات  ');
+                }
+            }catch(\Exception $e){
+                return $this->exception_message($e);
+            }
 
-
-             if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password])) {
-                 if (Auth::guard('admin')->user()->account_type == 'employee' && Auth::guard('admin')->user()->status == '0') {
-                     $this->Error_message(' من فضلك انتظر التفعيل من الادارة   ');
-                 } else {
-                     return redirect()->route('welcome');
-                 }
-             } else {
-                 //$this->Error_message(' لا يوجد حساب بهذه البيانات  ');
-                 return Redirect::back()->withInput()->withErrors('لا يوجد حساب بهذه البيانات  ');
-             }
          }
 
          return view('dashboard.login');
